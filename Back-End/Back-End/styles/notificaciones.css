@@ -1,0 +1,56 @@
+﻿.navbar {
+    background-color: #034A91;
+    color: #fff;
+}
+
+.navbar--button {
+    display: flex;
+    background-color: #034A91;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+    .navbar--button:hover {
+        background-color: #3471af;
+        color: white;
+    }
+
+.navbar--icon {
+    width: 20px;
+    height: auto;
+    margin: 5px;
+}
+
+.container {
+    margin: 40px;
+}
+
+.container--header {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.header--buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.accion--icon {
+    height: 12px;
+    width: auto;
+    margin: 5px;
+}
+
+.table--name {
+    width: 40%;
+}
+
+table {
+    text-align: center;
+}
+
+.table--container {
+    margin: 20px 0px;
+}

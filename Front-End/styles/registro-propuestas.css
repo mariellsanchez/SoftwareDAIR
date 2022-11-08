@@ -1,0 +1,38 @@
+.navbar{
+    background-color: #034A91;
+    color: #fff;
+}
+
+.navbar--button{
+    display: flex;
+    background-color: #034A91;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar--button:hover {
+    background-color: #3471af;
+    color: white;
+}
+
+.navbar--icon{
+    width: 20px;
+    height: auto;
+    margin: 5px;
+}
+
+.container{
+    margin-bottom: 20px;  
+    margin: 40px;
+}
+
+.btn-back{
+    float: left;
+    width: 150px;
+}
+
+.bottom--buttons{
+    display: flex;
+    gap: 250px;
+}

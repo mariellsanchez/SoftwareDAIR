@@ -1,0 +1,79 @@
+﻿@model Back_End.Models.FormLogin
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Software DAIR</title>
+    <link rel="stylesheet" href="~/styles/login.css">
+    <link rel="shortcut icon" href="~/src/logo.png">
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- JavaScript requerido -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+
+</head>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container-fluid container">
+        <div class="split left">
+            <div class="text-air">
+                <img src="~/src/DAIRlogo.png" alt="logo" class="logoDAIR">
+            </div>
+        </div>
+        <div class="split right">
+            <div class="imgcontainer">
+                <img src="~/src/user_img.png" alt="Avatar" class="avatar">
+            </div>
+            @Html.AntiForgeryToken()
+            <div class="containerform">
+                @using (Html.BeginForm("ValidarLogin", "Home", FormMethod.Post))
+                {
+                    <form class="needs-validation">
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Nombre, new
+                            {
+                                @class = "form-control",
+                                type = "text",
+                                placeholder = "Usuario"
+                            })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Contrasenia, new
+                            {
+                                @class = "form-control",
+                                type = "password",
+                                placeholder = "Contraseña"
+                            })
+                        </div>
+                        <div class="login form">
+                            <div class="card--body">
+                                <button class="btn btn-primary" type="submit"> Ingresar </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

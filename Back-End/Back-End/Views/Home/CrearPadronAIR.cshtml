@@ -1,0 +1,99 @@
+﻿
+@using System.Data
+
+@model Back_End.Models.FormCrearPadron
+
+@{
+    Layout = null;
+    ViewBag.Title = "CrearPadronAIR";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Software DAIR</title>
+    <link rel="stylesheet" href="~/styles/sesiones.css">
+    <link rel="shortcut icon" href="~/src/logo.png">
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="ext/fa/css/all.min.css">
+    <!-- JavaScript requerido -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+<header>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <h5 class="navbar--tittle"> Crear padrón AIR</h5>
+            <a href="./login.html" class="navbar--button">
+                <h5 href="./login.html" class="navbar--cerrar--sesion"> Cerrar sesión </h5>
+                <img class="navbar--icon" src="~/src/salir.png" alt="Salir">
+            </a>
+        </div>
+    </nav>
+</header>
+
+<body>
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="search--container">
+            @using (Html.BeginForm("GuardarNuevoPadronAIR", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <form class="needs-validation" style="top: 50%; left: 50%;" novalidate>
+
+                    <div class="form-row">
+                        
+                        <div class="col-md-3 mb-3">
+                            <label for="validationTooltip03">Año Inicio: </label>
+                            @Html.TextBoxFor(model => model.AnioInicio, new
+                       {
+                           @class = "form-control",
+                           type = "text"
+                       })
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationTooltip03">Año Fin: </label>
+                            @Html.TextBoxFor(model => model.AnioFin, new
+                       {
+                           @class = "form-control",
+                           type = "text"
+                       })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            
+                            <label for="validationTooltip03">Padrón: </label>
+                            @Html.TextBoxFor(model => model.NombrePadron, new
+                       {
+                           @class = "form-control",
+                           type = "text"
+                       })
+                            @Html.TextBoxFor(model => model.ArchivoPadron, new { type = "file" }) <br />
+                        </div>
+                    </div>
+
+                    <div class="container--header">
+
+                        @Html.ActionLink("Volver", "PadronesAIR", null, new { @class = "btn btn-secondary btn-back" })
+
+                        <button class="btn btn-primary" type="submit">Guardar</button>
+                    </div>
+
+                </form>
+            }
+        </div>
+
+        <div class="footer--container">
+        </div>
+</body>
+
+</html>

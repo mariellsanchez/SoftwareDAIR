@@ -1,0 +1,111 @@
+USE [ProyectoDAIR];
+GO
+
+IF OBJECT_ID('[dbo].[CreateSector]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[CreateSector] 
+END 
+GO
+CREATE PROC [dbo].[CreateSector] 
+	@Nombre NVARCHAR(32)
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+		BEGIN TRANSACTION nuevoSector
+			IF NOT EXISTS(SELECT Id FROM dbo.Sector WHERE Nombre = @Nombre)
+				BEGIN
+					INSERT INTO dbo.Sector(Nombre)
+					SELECT @Nombre;
+					SELECT @@Identity Id;
+				END
+			ELSE
+				BEGIN
+					SELECT Id FROM dbo.Sector WHERE Nombre = @Nombre
+				END
+		COMMIT TRANSACTION nuevoSector;
+	END TRY
+
+	BEGIN CATCH
+		IF @@TRANCOUNT>0
+			ROLLBACK TRANSACTION nuevoSector;
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[ReadSector]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[ReadSector] 
+END 
+GO
+CREATE PROC [dbo].[ReadSector] 
+    @Id INT
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id,Nombre
+		FROM dbo.Sector
+		WHERE [Id] = @Id
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[UpdateSector]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[UpdateSector] 
+END 
+GO
+CREATE PROC [dbo].[UpdateSector]
+	@Id INT,
+	@Nombre NVARCHAR(32)
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+		BEGIN TRANSACTION modificarSector
+			UPDATE dbo.Sector
+			SET Nombre = @Nombre
+			WHERE Id = @Id
+		COMMIT TRANSACTION modificarSector;
+		SELECT @Id;
+	END TRY
+
+	BEGIN CATCH
+		IF @@TRANCOUNT>0
+			ROLLBACK TRANSACTION modificarSector;
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[GetSector]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetSector] 
+END 
+GO
+CREATE PROC [dbo].[GetSector]
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id,Nombre
+		FROM dbo.Sector
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO

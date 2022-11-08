@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Software DAIR</title>
+  <link rel="stylesheet" href="./styles/padron.css">
+  <link rel="shortcut icon" href="src/logo.png">
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="ext/fa/css/all.min.css">
+  <!-- JavaScript requerido -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+</head>
+<header>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <h5 class="navbar--tittle"> Padrones por periodos</h5>
+      <a href="./login.html" class="navbar--button">
+        <h5 class="navbar--cerrar--sesion"> Cerrar sesión </h5>
+        <img class="navbar--icon" src="src/salir.png" alt="Salir">
+      </a>
+
+    </div>
+  </nav>
+</header>
+
+<body>
+  <div class="container">
+    <div class="search--container">
+      <input class="search--input" id="table_filter" type="text" placeholder="Buscar evento por nombre">
+      <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="label-icon"> Filtrar sesion </span>
+        <span class="caret">&nbsp;</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <ul class="search--filter--type">
+          <li>
+            <input type="radio" name="radios" id="Todas" value="Todas">
+            <label class="category-label" for="Todas">Todas</label>
+          </li>
+          <li>
+            <input type="radio" name="radios" id="AIR" value="AIR">
+            <label class="category-label" for="AIR">AIR</label>
+          </li>
+          <li>
+            <input type="radio" name="radios" id="DAIR" value="DAIR">
+            <label class="category-label" for="DAIR">DAIR</label>
+          </li>
+
+        </ul>
+      </div>
+      <button id="searchBtn" type="button" class="btn btn-secondary btn-search">
+        <span class="label-icon">Search</span>
+      </button>
+    </div>
+    <div class="table--container">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Periodo</th>
+            <th scope="col">Archivo</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>2020-2022</td>
+            <td><a href="#" class="btn btn-primary btn-sm btn-descargar">Descargar archivo</a></td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm btn-edit">
+                <img class="edit--icon" src="src/pencil.png" alt="Lapiz">
+                Editar
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>2018-2020</td>
+            <td><a href="#" class="btn btn-primary btn-sm btn-descargar">Descargar archivo</a></td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm btn-edit">
+                <img class="edit--icon" src="src/pencil.png" alt="Lapiz">
+                Editar
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>2016-2018</td>
+            <td><a href="#" class="btn btn-primary btn-sm btn-descargar">Descargar archivo</a></td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm btn-edit">
+                <img class="edit--icon" src="src/pencil.png" alt="Lapiz">
+                Editar
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>2014-2016</td>
+            <td><a href="#" class="btn btn-primary btn-sm btn-descargar">Descargar archivo</a></td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm btn-edit">
+                <img class="edit--icon" src="src/pencil.png" alt="Lapiz">
+                Editar
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>2012-2014</td>
+            <td><a href="#" class="btn btn-primary btn-sm btn-descargar">Descargar archivo</a></td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm btn-edit">
+                <img class="edit--icon" src="src/pencil.png" alt="Lapiz">
+                Editar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer--container">
+      <a href="./menu.html" class="btn btn-secondary btn-back"> Volver </a>
+      <a href="./menu.html" class="btn btn-primary btn-load"> Cargar nuevo periodo </a>
+    </div>
+</body>
+
+</html>

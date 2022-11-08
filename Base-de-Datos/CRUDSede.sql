@@ -1,0 +1,111 @@
+USE [ProyectoDAIR];
+GO
+
+IF OBJECT_ID('[dbo].[CreateSede]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[CreateSede] 
+END 
+GO
+CREATE PROC [dbo].[CreateSede] 
+	@Nombre NVARCHAR(32)
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+		BEGIN TRANSACTION nuevaSede
+			IF NOT EXISTS(SELECT Id FROM dbo.Sede WHERE Nombre = @Nombre)
+				BEGIN
+					INSERT INTO dbo.Sede(Nombre)
+					SELECT @Nombre;
+					SELECT @@Identity Id;
+				END
+			ELSE
+				BEGIN
+					SELECT Id FROM dbo.Sede WHERE Nombre = @Nombre
+				END
+		COMMIT TRANSACTION nuevaSede;
+	END TRY
+
+	BEGIN CATCH
+		IF @@TRANCOUNT>0
+			ROLLBACK TRANSACTION nuevaSede;
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[ReadSede]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[ReadSede] 
+END 
+GO
+CREATE PROC [dbo].[ReadSede] 
+    @Id INT
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id,Nombre
+		FROM dbo.Sede
+		WHERE [Id] = @Id
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[UpdateSede]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[UpdateSede] 
+END 
+GO
+CREATE PROC [dbo].[UpdateSede]
+	@Id INT,
+	@Nombre NVARCHAR(32)
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+		BEGIN TRANSACTION modificarSede
+			UPDATE dbo.Sede
+			SET Nombre = @Nombre
+			WHERE Id = @Id
+		COMMIT TRANSACTION modificarSede;
+		SELECT @Id;
+	END TRY
+
+	BEGIN CATCH
+		IF @@TRANCOUNT>0
+			ROLLBACK TRANSACTION modificarSede;
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO
+
+IF OBJECT_ID('[dbo].[GetSede]') IS NOT NULL
+BEGIN 
+    DROP PROC [dbo].[GetSede] 
+END 
+GO
+CREATE PROC [dbo].[GetSede]
+AS
+BEGIN
+SET NOCOUNT ON
+	BEGIN TRY
+		SELECT Id,Nombre
+		FROM dbo.Sede
+	END TRY
+
+	BEGIN CATCH
+		SELECT -1
+	END CATCH
+SET NOCOUNT OFF
+END
+GO

@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "SesionAIR";
+}
+
+@using System.Data
+@model System.Data.DataTable
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Software DAIR</title>
+    <link rel="stylesheet" href="~/styles/sesion.css">
+    <link rel="shortcut icon" href="~/src/logo.png">
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="ext/fa/css/all.min.css">
+    <!-- JavaScript requerido -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+<header>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <h5 class="navbar--tittle"> Sesion de AIR</h5>
+            <a href="~/login.html" class="navbar--button">
+                <h5 ref="./login.html" class="navbar--cerrar--sesion"> Cerrar sesión </h5>
+                <img class="navbar--icon" src="~/src/salir.png" alt="Salir">
+            </a>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <!-- The Modal -->
+    <div class="container-fluid container">
+        <div class="container--header">
+            <h4> @ViewBag.Nombre </h4>
+        </div>
+        <form class="needs-validation" style="top: 50%; left: 50%;" novalidate>
+            <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip03"> Fecha: </label>
+                    <input type="text" class="form-control" id="validationTooltip02" disabled="true" value=@ViewBag.Fecha>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip03"> Hora de inicio: </label>
+                    <input type="text" class="form-control" id="validationTooltip02" disabled="true" value=@ViewBag.HoraInicio>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip03"> Hora final: </label>
+                    <input type="text" class="form-control" id="validationTooltip02" disabled="true" value=@ViewBag.HoraFinal>
+                </div>
+
+            </div>
+            <div class="table--container">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Etapa</th>
+                            <th scope="col"> Votos a Favor</th>
+                            <th scope="col"> Votos en Contra</th>
+                            <th scope="col"> Votos en Blanco</th>
+                            <th scope="col"> Propuesta </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                <td>@row["Nombre"].ToString() </td>
+                                @if (row["Aprovado"].ToString() == "True")
+                                {
+                                    @:<td>Aprobado</td>
+                                }
+                                else
+                                {
+                                    @:<td>Rechazado</td>
+                                }
+                                <td>
+                                    <p> @row["VotosAFavor"].ToString()</p>
+                                </td>
+                                <td>
+                                    <p>@row["VotosEnContra"].ToString()</p>
+                                </td>
+                                <td>
+                                    <p>@row["VotosEnBlanco"].ToString()</p>
+                                </td>
+                                <td>
+                                    <a href=@row["Link"].ToString() target="_blank" class="btn btn-primary">Ver</a>
+                                </td>
+                                <td>
+
+                                    @Html.RouteLink("Editar", "EditarPropuestaAIR", new { id = row["Id"] }, new { @class = "btn btn-secondary btn-sm" })
+
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("Borrar", "BorrarPropuestaAIR", new { id = row["Id"] }, new { @class = "btn btn-secondary btn-sm" })
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="container--header">
+                @Html.RouteLink("Volver", "SesionesAIR", null, new { @class = "btn btn-secondary btn-back" })
+                @Html.RouteLink("Agregar Propuesta", "CrearPropuestaAIR", new { SesionAIRId = ViewBag.SesionAIRId }, new { @class = "btn btn-primary" })
+
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    $(".btn-votacion").click(function () {
+        $(".modal").css("display", "block");
+    })
+    $(".ok").click(function () {
+        $(".modal").css("display", "none");
+    });
+</script>
+</html>

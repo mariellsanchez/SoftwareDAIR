@@ -1,0 +1,87 @@
+
+.navbar{
+    background-color: #034A91;
+    color: #fff;
+}
+
+.navbar--button{
+    display: flex;
+    background-color: #034A91;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar--button:hover {
+    background-color: #3471af;
+    color: white;
+}
+
+.navbar--icon{
+    width: 20px;
+    height: auto;
+    margin: 5px;
+}
+
+.navbar--cerrar--sesion {
+    color: white !important;
+
+}
+
+.container--notification {
+    display: flex;
+    justify-content: right;
+}
+
+.btn-notify {
+    color: #fff;
+    margin: 20px;
+}
+
+.card--container {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+}
+
+.card{
+    width: 18rem;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.card--img{
+    width: 150px;
+    height: auto;
+    margin: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.card--body{
+    text-align: center;
+}
+
+.card--button{
+    font-size: 20px;
+    width: 200px;
+    height: auto;
+    background-color: #034A91;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.btn-primary{
+    color: #fff;
+    margin: 20px;
+    background-color: #034A91 !important;
+}
+
+.btn-primary:hover {
+    background-color: #3471af !important;
+    color: white;
+}

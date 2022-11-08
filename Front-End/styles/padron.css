@@ -1,0 +1,75 @@
+.navbar{
+    background-color: #034A91;
+    color: #fff;
+}
+
+.navbar--button{
+    display: flex;
+    background-color: #034A91;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.navbar--button:hover {
+    background-color: #3471af;
+    color: white;
+}
+
+.navbar--icon{
+    width: 20px;
+    height: auto;
+    margin: 5px;
+}
+
+.edit--icon{
+    width: 15px;
+    height: auto;
+    margin: 5px;
+}
+
+.search--container{
+    margin-bottom: 20px;  
+    margin: 40px;
+}
+
+.search--input{
+    width: 350px;
+    background-color: #dedede;
+    border-radius: 4px;
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.btn-search{
+    background-color: #034A91 !important;
+}
+
+.btn-back{
+    float: left;
+    width: 150px;
+}
+
+.btn-load{
+    float: right;
+}
+
+.btn-edit{
+    background-color: #686f76 !important;
+    border: none !important;
+}
+
+.table--container{
+    margin: 40px;
+}
+
+tr:hover{
+    background-color: #b0b1b2 !important;
+}
+
+.footer--container{
+    margin: 40px;
+    padding-bottom: 40px;
+}
